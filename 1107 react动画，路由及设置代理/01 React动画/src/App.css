@@ -1,0 +1,31 @@
+.app{
+    text-align: center;
+}
+/* 初始运行时 挂载的动画 */
+.fade-appear{
+    transform: translateY(400%);
+}
+.fade-appear-active{
+    transform: translateY(0);
+    transition: all 1s;
+}
+
+
+/* 进入动画 */
+.fade-enter{
+    opacity: 0;
+}
+.fade-enter.fade-enter-active{
+    opacity: 1;
+    transition: all 1000ms;
+}
+
+
+/* 离开动画 */
+.fade-leave{
+    opacity: 1;;
+}
+.fade-leave.fade-leave-active{
+    opacity: 0;
+    transition: all 1s;
+}

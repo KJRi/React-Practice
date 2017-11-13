@@ -1,0 +1,59 @@
+Redux 是 JavaScript 状态容器，提供可预测化的状态管理。
+
+使用概述：
+1.应用中所有的 state 都以一个对象树的形式储存在一个单一的 store 中。
+2.惟一改变 state 的办法是触发 action，一个描述发生什么的对象。
+3.为了描述 action 如何改变 state 树，你需要编写 reducers。
+
+
+第一步：定义action
+Action 是把数据从应用传到 store 的有效载荷。它是 store 数据的唯一来源。一般来说你会通过 store.dispatch() 将 action 传到 store。
+ action 来描述“发生了什么”
+
+export function addTodos(content) {
+    return {
+        type:'ADD_TODO',
+        content
+    }
+}
+
+第二步：定义Reducer
+Action 只是描述了有事情发生了这一事实，并没有指明应用如何更新 state。而这正是 reducer 要做的事情。
+reducer 就是一个纯函数，接收旧的 state 和 action，返回新的 state。
+reducers 来根据 action 更新 state 
+import {combineReducers} from 'redux'
+
+function list(state=[],action){
+    switch (action.type) {
+        case 'ADD_TODO':
+            return state.concat(action.content)
+        default:
+            return state
+    }
+}
+
+export default combineReducers({list});
+
+第三步：创建和使用store对象，连接Redux
+使用 action 来描述“发生了什么”，使用 reducers 来根据 action 更新 state 的用法。
+Store 就是把它们联系到一起的对象。 Redux 应用只有一个单一的 store。
+
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+import reducres from './store/reducers'
+
+let store = createStore(reducres);
+
+ReactDOM.render(
+    <Provider store={store}>
+        <App></App>
+    </Provider>,
+    document.getElementById('root')
+);
+
+
+第四步：在组件中触发action更新state
+
+this.props.dispatch(addTodos(value))
+
+

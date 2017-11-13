@@ -1,0 +1,14 @@
+/* 进入 */
+.remove-enter{
+    opacity: 0;
+}
+.remove-enter.remove-enter-active{
+    opacity: 1;
+    transition: all 500ms;
+}
+/* 离开 */
+.remove-leave.remove-leave-active{
+    opacity: 0;
+    transform: translateX(100%);
+    transition: all 500ms
+}
